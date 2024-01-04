@@ -17,7 +17,10 @@ export default class LoginModal{
         await this.emailField.click();
         await this.emailField.fill('mohananup002@gmail.com');
         await this.checkboxRegister.click();
+        const responsePromise = this.page.waitForResponse(resp => resp.url().includes('api/account/profile/auth-options') && resp.status() === 200);
         await this.continueButton.click();
+        await responsePromise;
+        
         
 
     }
